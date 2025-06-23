@@ -54,24 +54,24 @@ body {
     background-color: var(--primary-green);
     color: var(--bg-color);
 }
+
 button {
-  background-color: transparent;
-  border: 2px solid #2ECC71;  /* LeetCode green */
-  color: #2ECC71;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin-left: 10px;  /* space from input */
+    background-color: transparent;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-left: 10px;
 }
 
 button:hover {
-  background-color: #2ECC71;
-  color: #0d1117; /* dark bg */
+    background-color: var(--primary-green);
+    color: var(--bg-color);
 }
-
 
 /* === Heading === */
 h1 {
@@ -106,12 +106,45 @@ input {
     font-size: 1rem;
     border-radius: 6px;
     transition: border-color 0.2s;
+    width: 100%;
 }
 
 input:focus {
     border-color: var(--primary-green);
     outline: none;
 }
+
+/* === Password Wrapper === */
+/* === Password Wrapper === */
+.password-wrapper {
+    display: flex;
+    align-items: stretch; /* makes both input and button same height */
+    gap: 10px;
+    width: 100%;
+}
+
+.password-wrapper input {
+    flex: 1;
+    min-width: 0;
+}
+
+.password-wrapper button {
+    padding: 0 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 2px solid var(--primary-green);
+    background-color: transparent;
+    color: var(--primary-green);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+}
+.password-wrapper button:hover {
+    background-color: var(--primary-green);
+    color: var(--bg-color);
+}
+
 
 /* === Log In Button === */
 #login {
@@ -154,10 +187,15 @@ input:focus {
         font-size: 0.95rem;
         padding: 10px;
     }
-    form > div[style*="display: flex"] button { 
-        font-size: 0.5rem; 
-        padding: 4px 6px; 
-        white-space: nowrap; 
-        min-width: unset; 
+
+    .password-wrapper {
+        gap: 6px;
+    }
+
+    .password-wrapper button {
+        font-size: 0.7rem;
+        padding: 6px;
+        margin-left: 0;
     }
 }
+
