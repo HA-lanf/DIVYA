@@ -71,6 +71,7 @@
             color: var(--primary-green);
             text-align: center;
             margin-bottom: 30px;
+            padding: 20px 0; /* Add padding for spacing */
         }
 
         .messagebox {
@@ -139,14 +140,13 @@
         /* Media queries for smaller screens (e.g., mobile) */
         @media (max-width: 500px) {
             body {
-                padding: 20px 15px; /* Slightly less padding on smaller screens */
+                padding: 10px 5px; /* Slightly less padding on smaller screens */
             }
 
             .top-buttons {
-                flex-direction: column; /* Stack buttons vertically */
-                top: 15px;
-                right: 15px;
-                width: auto; /* Allow buttons to take natural width */
+                top: 10px;
+                right: 10px;
+                 /* Allow buttons to take natural width */
                 align-items: flex-end; /* Align buttons to the right */
             }
 
@@ -158,7 +158,8 @@
 
             h1 {
                 font-size: 2rem; /* Smaller font for heading */
-                margin-top: 80px; /* Push heading down to avoid overlapping buttons */
+                margin-top: 50px; /* Push heading down to avoid overlapping buttons */
+                padding: 10px 0; /* Add some padding for better spacing */
             }
 
             .messagebox {
