@@ -14,13 +14,17 @@
         <button id="signin" onclick="location.href='signin.html'">Already have an account? Sign In</button>
         <button id="home" onclick="location.href='index.html'">Message Anonymously</button>
     </div>
+
     <h1>Create Account</h1>
+
     <form action="submit">
         <input type="text" id="username" placeholder="Create username here" required>
-        <div style="display: flex; align-items: center;">
+
+        <div class="password-wrapper">
             <input type="password" id="password" placeholder="Enter password" required>
             <button type="button" onclick="togglePassword(event)">Show Password</button>
         </div>
+
         <button id="signup">Create Account</button>
     </form>
 </body>
