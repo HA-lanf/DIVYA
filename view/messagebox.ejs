@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIVYA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        :root {
+            --bg-color: #0d1117;
+            --primary-green: #2ECC71;
+            --text-color: #c9d1d9;
+            --border-color: #30363d;
+            --hover-green: #27ae60;
+        }
+
+        /* Universal box-sizing for consistent layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 40px 20px; /* Responsive padding for all screen sizes */
+            min-height: 100vh; /* Ensures body takes full viewport height */
+            position: relative;
+            display: flex; /* Use flexbox for main layout */
+            flex-direction: column; /* Stack children vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: flex-start; /* Align content to start, allowing space at bottom if content is short */
+        }
+
+        .top-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px; /* Spacing between buttons */
+        }
+
+        button {
+            background-color: transparent;
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 10px 20px;
+            font-size: 1rem; /* Base font size for buttons */
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* Ensure buttons have adequate touch target size */
+            min-width: 100px; /* Minimum width for buttons */
+            min-height: 44px; /* Minimum height for buttons (recommended touch target) */
+        }
+
+        button:hover {
+            background-color: var(--primary-green);
+            color: var(--bg-color);
+        }
+
+        h1 {
+            margin-top: 10px;
+            font-size: 2.5rem; /* Large font for desktop */
+            font-weight: 700;
+            color: var(--primary-green);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .messagebox {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Spacing between messages */
+            width: 100%; /* Take full width of parent (body padding constrains) */
+            max-width: 600px; /* Max width for readability on larger screens */
+            margin-top: 20px;
+        }
+
+        .message {
+            background-color: #161b22;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            transition: background 0.3s ease;
+            cursor: pointer; /* Indicate it's clickable */
+        }
+
+        .message:hover {
+            background-color: #1c222a;
+        }
+
+        .message h2 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: var(--primary-green);
+        }
+
+        .message p {
+            font-size: 1rem;
+            color: var(--text-color);
+            line-height: 1.5; /* Improve readability of text */
+        }
+
+        /* Optional: Visual cue for seen messages */
+        .message[data-seen="true"] {
+            opacity: 0.7; /* Make seen messages slightly transparent */
+        }
+
+        .message-card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #161b22;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            z-index: 999;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            color: var(--text-color);
+            max-width: 80%; /* Fluid width for the message card */
+            min-width: 300px; /* Ensure card is not too small on larger screens */
+            box-sizing: border-box; /* Include padding in width calculation */
+            cursor: pointer; /* Indicate the card itself is clickable to dismiss */
+        }
+
+        .message-card h2 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        /* Media queries for smaller screens (e.g., mobile) */
+        @media (max-width: 500px) {
+            body {
+                padding: 20px 15px; /* Slightly less padding on smaller screens */
+            }
+
+            .top-buttons {
+                flex-direction: column; /* Stack buttons vertically */
+                top: 15px;
+                right: 15px;
+                width: auto; /* Allow buttons to take natural width */
+                align-items: flex-end; /* Align buttons to the right */
+            }
+
+            button {
+                font-size: 0.9rem; /* Slightly smaller font for buttons */
+                padding: 8px 15px; /* Adjust padding */
+                width: auto; /* Allow buttons to shrink */
+            }
+
+            h1 {
+                font-size: 2rem; /* Smaller font for heading */
+                margin-top: 80px; /* Push heading down to avoid overlapping buttons */
+            }
+
+            .messagebox {
+                gap: 15px; /* Reduce gap between messages */
+                padding-top: 0; /* No extra top padding */
+            }
+
+            .message {
+                padding: 15px; /* Reduce message padding */
+            }
+
+            .message-card {
+                padding: 20px;
+                min-width: unset; /* Remove minimum width constraint for small screens */
+                width: 90%; /* Take more width on small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-buttons">
+        <button id="home" onclick="location.href='index.html'">Message Anonymously</button>
+        <button id="logout" onclick="location.href='signin.html'">Log Out</button>
+    </div>
+
+    <h1>YOUR MESSAGES</h1>
+
+    <div id="messagebox" class="messagebox">
+        <% messages.forEach(function(message) { %>
+            <!-- Add data-id attribute to store message._id -->
+            <div class="message" data-id="<%= message._id %>" data-seen="<%= message.seen %>">
+                <h2>ANONYMOUS USER</h2>
+                <p><%= message.message || message.text %></p>
+                <% /* The image tag for unread status is removed as per your request */ %>
+            </div>
+        <% }); %>
+    </div>
+
+    <script>
+        // Reference to the currently displayed message card, if any
+        let currentMessageCard = null;
+
+        // Function to dismiss the card
+        function dismissMessageCard() {
+            if (currentMessageCard) {
+                currentMessageCard.remove();
+                currentMessageCard = null;
+                // Remove the global click listener when the card is dismissed
+                document.removeEventListener('click', dismissMessageCardGlobal);
+            }
+        }
+
+        // Global click listener for dismissing the card when clicking outside
+        function dismissMessageCardGlobal(event) {
+            // Check if the click occurred outside the current message card
+            if (currentMessageCard && !currentMessageCard.contains(event.target)) {
+                dismissMessageCard();
+            }
+        }
+
+        document.querySelectorAll('.message').forEach(msgDiv => {
+            msgDiv.addEventListener('click', async (event) => {
+                // Stop propagation so the document click listener doesn't immediately dismiss it
+                event.stopPropagation();
+
+                // If a card is already open, dismiss it first
+                if (currentMessageCard) {
+                    dismissMessageCard();
+                }
+
+                const messageId = msgDiv.dataset.id; // Get message ID from data-id attribute
+
+                // Display the message card
+                const card = document.createElement('div');
+                card.classList.add('message-card');
+                card.innerHTML = `
+                    <h2>ANONYMOUS USER</h2>
+                    <p>${msgDiv.querySelector('p').textContent}</p>
+                `;
+                document.body.appendChild(card);
+                currentMessageCard = card; // Store reference to the new card
+
+                // Add click listener to the card itself to dismiss it
+                card.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Stop click from bubbling to document
+                    dismissMessageCard();
+                });
+
+                // Add a global click listener to dismiss the card when clicking anywhere else on the document
+                // This listener is added *after* the card is displayed and only if a card is not already present
+                document.addEventListener('click', dismissMessageCardGlobal);
+
+
+                // Send request to backend to mark message as seen
+                try {
+                    const response = await fetch(`/messages/${messageId}/mark-seen`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        console.log('Message marked as seen successfully:', messageId);
+                        // Update UI to reflect seen status
+                        msgDiv.dataset.seen = "true"; // This will apply the CSS opacity change
+                    } else {
+                        console.error('Failed to mark message as seen:', data.message || 'Unknown error');
+                    }
+                } catch (error) {
+                    console.error('Network error while marking message as seen:', error);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
