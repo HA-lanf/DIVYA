@@ -252,28 +252,7 @@
                 // Add a global click listener to dismiss the card when clicking anywhere else on the document
                 // This listener is added *after* the card is displayed and only if a card is not already present
                 document.addEventListener('click', dismissMessageCardGlobal);
-
-
-                // Send request to backend to mark message as seen
-                try {
-                    const response = await fetch(`/messages/${messageId}/mark-seen`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
-                    const data = await response.json();
-
-                    if (response.ok && data.success) {
-                        console.log('Message marked as seen successfully:', messageId);
-                        // Update UI to reflect seen status
-                        msgDiv.dataset.seen = "true"; // This will apply the CSS opacity change
-                    } else {
-                        console.error('Failed to mark message as seen:', data.message || 'Unknown error');
-                    }
-                } catch (error) {
-                    console.error('Network error while marking message as seen:', error);
-                }
+                
             });
         });
     </script>
