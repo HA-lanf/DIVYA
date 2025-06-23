@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
-// Removed ObjectId import as it's no longer needed for mark-seen
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 // Load environment variables from .env file (for local development)
@@ -20,39 +19,78 @@ app.use(cors()); // Enable Cross-Origin Resource Sharing
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
-// Set EJS view engine to look in Frontend/view for templates like messagebox.ejs
+// --- START: PATH DEBUGGING & ROBUST PATHS FOR FLAT REPO ---
+console.log('--- RENDER PATH DEBUGGING INFO (Flat Repo) ---');
+console.log(`1. Current Working Directory (process.cwd()): ${process.cwd()}`);
+console.log(`2. __dirname (app.js location): ${__dirname}`);
+
+// For a flat repository, the project root IS the current working directory.
+const PROJECT_ROOT = process.cwd(); 
+
+// Static files (HTML, CSS, JS, images) are directly in the project root.
+const STATIC_FILES_DIR = PROJECT_ROOT; 
+
+// EJS views are in a 'view' subfolder directly in the project root.
+const VIEWS_DIR = path.join(PROJECT_ROOT, 'view');
+
+console.log(`3. Calculated Static Files Directory (STATIC_FILES_DIR): ${STATIC_FILES_DIR}`);
+console.log(`4. Calculated EJS Views Directory (VIEWS_DIR): ${VIEWS_DIR}`);
+console.log('------------------------------------');
+// --- END: PATH DEBUGGING & ROBUST PATHS FOR FLAT REPO ---
+
+// Set EJS view engine to look in the 'view' subfolder
 app.set('view engine', 'ejs');
-// Dynamically determine the views directory path for EJS templates
-const VIEWS_DIR = path.join(__dirname, '..', 'Frontend', 'view');
-app.set('views', VIEWS_DIR);
-console.log(`EJS views directory set to: ${VIEWS_DIR}`);
+app.set('views', VIEWS_DIR); // Use the robust path
 
-// Serve static files (HTML, CSS, JS, images, etc.) from the 'Frontend' folder.
-const STATIC_FILES_DIR = path.join(__dirname, '..', 'Frontend');
+// Serve static files (HTML, CSS, JS, images, etc.) from the project root.
 app.use(express.static(STATIC_FILES_DIR));
-console.log(`Serving static files from: ${STATIC_FILES_DIR}`);
 
 
-// --- Explicit GET routes for main HTML pages ---
+// --- Explicit GET routes for main HTML pages (directly in root) ---
 app.get('/', (req, res) => {
-    res.sendFile(path.join(STATIC_FILES_DIR, 'index.html'));
+    res.sendFile(path.join(STATIC_FILES_DIR, 'index.html'), (err) => {
+        if (err) {
+            console.error(`Error sending index.html: ${err.message}`);
+            res.status(404).send('Could not find index.html at expected path on server.');
+        }
+    });
 });
 
 app.get('/signup', (req, res) => {
-    res.sendFile(path.join(STATIC_FILES_DIR, 'signup.html'));
+    res.sendFile(path.join(STATIC_FILES_DIR, 'signup.html'), (err) => {
+        if (err) {
+            console.error(`Error sending signup.html: ${err.message}`);
+            res.status(404).send('Could not find signup.html at expected path on server.');
+        }
+    });
 });
 
 app.get('/signin', (req, res) => {
-    res.sendFile(path.join(STATIC_FILES_DIR, 'signin.html'));
+    res.sendFile(path.join(STATIC_FILES_DIR, 'signin.html'), (err) => {
+        if (err) {
+            console.error(`Error sending signin.html: ${err.message}`);
+            res.status(404).send('Could not find signin.html at expected path on server.');
+        }
+    });
 });
 
 // Also handle direct .html requests if any links use them (e.g., in development)
 app.get('/signup.html', (req, res) => {
-    res.sendFile(path.join(STATIC_FILES_DIR, 'signup.html'));
+    res.sendFile(path.join(STATIC_FILES_DIR, 'signup.html'), (err) => {
+        if (err) {
+            console.error(`Error sending signup.html directly: ${err.message}`);
+            res.status(404).send('Could not find signup.html at expected path on server.');
+        }
+    });
 });
 
 app.get('/signin.html', (req, res) => {
-    res.sendFile(path.join(STATIC_FILES_DIR, 'signin.html'));
+    res.sendFile(path.join(STATIC_FILES_DIR, 'signin.html'), (err) => {
+        if (err) {
+            console.error(`Error sending signin.html directly: ${err.message}`);
+            res.status(404).send('Could not find signin.html at expected path on server.');
+        }
+    });
 });
 
 
@@ -66,19 +104,18 @@ async function connectToMongo() {
                 deprecationErrors: true,
             },
         });
-        await client.connect();
-        await client.db("admin").command({ ping: 1 });
+        await client.connect(); // Connect to MongoDB
+        await client.db("admin").command({ ping: 1 }); // Ping to confirm connection
         console.log("✅ Connected to MongoDB");
-        mongoClient = client;
+        mongoClient = client; // Store client for later use
     } catch (error) {
         console.error("❌ MongoDB connection error:", error);
+        // Exit process if MongoDB connection fails as it's critical
         process.exit(1);
     }
 }
 
-// API Routes
-
-// Sign Up Route
+// API Routes (unchanged)
 app.post('/signup', async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -94,7 +131,7 @@ app.post('/signup', async (req, res) => {
             username,
             message: "Welcome to the app! Aditya this side.",
             timestamp: new Date(),
-            seen: false, // Messages will still be initialized as false
+            seen: false, 
         });
         res.status(200).json({ success: true, message: 'Signup successful!' });
     } catch (error) {
@@ -103,7 +140,6 @@ app.post('/signup', async (req, res) => {
     }
 });
 
-// Sign In Route
 app.post('/signin', async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -122,7 +158,6 @@ app.post('/signin', async (req, res) => {
     }
 });
 
-// Send Message Route
 app.post('/index', async (req, res) => {
     const { username, message } = req.body;
     if (!username || !message) {
@@ -137,7 +172,7 @@ app.post('/index', async (req, res) => {
             username,
             message,
             timestamp: new Date(),
-            seen: false, // Messages will still be initialized as false
+            seen: false, 
         });
         res.status(200).json({ success: true, message: 'Message sent successfully!' });
     } catch (error) {
@@ -146,7 +181,6 @@ app.post('/index', async (req, res) => {
     }
 });
 
-// Fetch Messages Route (GET with query param)
 app.get('/messagebox', async (req, res) => {
     const username = req.query.username;
     if (!username) {
@@ -164,12 +198,11 @@ app.get('/messagebox', async (req, res) => {
     }
 });
 
-// Removed the app.post('/messages/:id/mark-seen') endpoint
-
 // Start server
 connectToMongo().then(() => {
     app.listen(port, () => {
         console.log(`🚀 Server running at http://localhost:${port}`);
     });
 });
+
 
