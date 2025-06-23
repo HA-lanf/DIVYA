@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIVYA</title>
+    <link rel="stylesheet" href="signup_style.css">
+    <script src="signup_script.js" defer></script>
+</head>
+
+<body>
+    <div class="top-buttons">
+        <button id="signin" onclick="location.href='signin.html'">Already have an account? Sign In</button>
+        <button id="home" onclick="location.href='index.html'">Message Anonymously</button>
+    </div>
+    <h1>Create Account</h1>
+    <form action="submit">
+        <input type="text" id="username" placeholder="Create username here" required>
+        <div style="display: flex; align-items: center;">
+            <input type="password" id="password" placeholder="Enter password" required>
+            <button type="button" onclick="togglePassword(event)">Show Password</button>
+        </div>
+        <button id="signup">Create Account</button>
+    </form>
+</body>
+
+</html>

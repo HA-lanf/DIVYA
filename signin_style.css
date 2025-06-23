@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --bg-color: #0d1117;
+    --primary-green: #2ECC71;
+    --text-color: #c9d1d9;
+    --border-color: #30363d;
+    --hover-green: #27ae60;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 40px 20px;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* === Top Right Buttons Container === */
+.top-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* === Top Buttons === */
+#signup,
+#home {
+    background-color: transparent;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#signup:hover,
+#home:hover {
+    background-color: var(--primary-green);
+    color: var(--bg-color);
+}
+button {
+  background-color: transparent;
+  border: 2px solid #2ECC71;  /* LeetCode green */
+  color: #2ECC71;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-left: 10px;  /* space from input */
+}
+
+button:hover {
+  background-color: #2ECC71;
+  color: #0d1117; /* dark bg */
+}
+
+
+/* === Heading === */
+h1 {
+    margin-top: 100px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+/* === Form Styling === */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    background-color: #161b22;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+/* === Inputs === */
+input {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    color: var(--text-color);
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--primary-green);
+    outline: none;
+}
+
+/* === Log In Button === */
+#login {
+    background-color: transparent;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#login:hover {
+    background-color: var(--primary-green);
+    color: var(--bg-color);
+}
+
+/* === Responsive Design === */
+@media (max-width: 500px) {
+    .top-buttons {
+        flex-direction: column;
+        top: 10px;
+        right: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-top: 120px;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    #signup,
+    #home,
+    #login {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+    form > div[style*="display: flex"] button { 
+        font-size: 0.5rem; 
+        padding: 4px 6px; 
+        white-space: nowrap; 
+        min-width: unset; 
+    }
+}
