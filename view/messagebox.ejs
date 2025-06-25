@@ -257,7 +257,7 @@
                 card.classList.add('message-card');
                 card.innerHTML = `
                     <h2>ANONYMOUS USER</h2>
-                    <p>${msgDiv.querySelector('p').textContent}</p>
+                    <p>${msgDiv.querySelector('textarea').textContent}</p>
                 `;
                 document.body.appendChild(card);
                 currentMessageCard = card; // Store reference to the new card
