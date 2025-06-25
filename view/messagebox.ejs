@@ -2,260 +2,254 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DIVYA</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIVYA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-        :root {
-            --bg-color: #0d1117;
-            --primary-green: #2ECC71;
-            --text-color: #c9d1d9;
-            --border-color: #30363d;
-            --hover-green: #27ae60;
-        }
+    :root {
+      --bg-color: #0d1117;
+      --primary-green: #2ECC71;
+      --text-color: #c9d1d9;
+      --border-color: #30363d;
+      --hover-green: #27ae60;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 40px 20px;
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .top-buttons {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
+    .top-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
 
-        button {
-            background-color: transparent;
-            border: 2px solid var(--primary-green);
-            color: var(--primary-green);
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 100px;
-            min-height: 44px;
-        }
+    button {
+      background-color: transparent;
+      border: 2px solid var(--primary-green);
+      color: var(--primary-green);
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 100px;
+      min-height: 44px;
+    }
 
-        button:hover {
-            background-color: var(--primary-green);
-            color: var(--bg-color);
-        }
+    button:hover {
+      background-color: var(--primary-green);
+      color: var(--bg-color);
+    }
 
-        h1 {
-            margin-top: 10px;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-green);
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px 0;
-        }
+    h1 {
+      margin-top: 10px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px 0;
+    }
 
-        .messagebox {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 600px;
-            margin-top: 20px;
-        }
+    .messagebox {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
 
-        .message {
-            background-color: #161b22;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            position: relative;
-            transition: background 0.3s ease;
-            cursor: pointer;
-        }
+    .message {
+      background-color: #161b22;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
 
-        .message:hover {
-            background-color: #1c222a;
-        }
+    .message:hover {
+      background-color: #1c222a;
+    }
 
-        .message h2 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            color: var(--primary-green);
-        }
+    .message h2 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: var(--primary-green);
+    }
 
-        .message textarea,
-        .message-card textarea {
-            width: 100%;
-            background-color: transparent;
-            border: none;
-            resize: none;
-            color: var(--text-color);
-            font-size: 1rem;
-            line-height: 1.5;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            word-break: break-word;
-        }
+    .message textarea,
+    .message-card textarea {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      resize: none;
+      color: var(--text-color);
+      font-size: 1rem;
+      line-height: 1.5;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
 
-        .message textarea:focus {
-            outline: none;
-        }
+    .message textarea:focus {
+      outline: none;
+    }
 
-        .message[data-seen="true"] {
-            opacity: 0.7;
-        }
+    .message[data-seen="true"] {
+      opacity: 0.7;
+    }
 
-        .message-card {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #161b22;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            z-index: 999;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            color: var(--text-color);
-            max-width: 80%;
-            min-width: 300px;
-            box-sizing: border-box;
-            cursor: pointer;
-        }
+    .message-card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #161b22;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      z-index: 999;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      color: var(--text-color);
+      max-width: 80%;
+      min-width: 300px;
+      cursor: pointer;
+    }
 
-        .message-card h2 {
-            color: var(--primary-green);
-            margin-bottom: 10px;
-        }
+    .message-card h2 {
+      color: var(--primary-green);
+      margin-bottom: 10px;
+    }
 
-        @media (max-width: 500px) {
-            body {
-                padding: 10px 5px;
-            }
+    @media (max-width: 500px) {
+      body {
+        padding: 10px 5px;
+      }
 
-            .top-buttons {
-                top: 10px;
-                right: 10px;
-                align-items: flex-end;
-            }
+      .top-buttons {
+        top: 10px;
+        right: 10px;
+      }
 
-            button {
-                font-size: 0.9rem;
-                padding: 8px 15px;
-                width: auto;
-            }
+      button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+        width: auto;
+      }
 
-            h1 {
-                font-size: 2rem;
-                margin-top: 50px;
-                padding: 10px 0;
-            }
+      h1 {
+        font-size: 2rem;
+        margin-top: 50px;
+        padding: 10px 0;
+      }
 
-            .messagebox {
-                gap: 15px;
-                padding-top: 0;
-            }
+      .messagebox {
+        gap: 15px;
+      }
 
-            .message {
-                padding: 15px;
-            }
+      .message {
+        padding: 15px;
+      }
 
-            .message-card {
-                padding: 20px;
-                min-width: unset;
-                width: 90%;
-            }
-        }
-    </style>
+      .message-card {
+        padding: 20px;
+        min-width: unset;
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="top-buttons">
-        <button onclick="location.href='index.html'">Message Anonymously</button>
-        <button onclick="location.href='signin.html'">Log Out</button>
-    </div>
+  <div class="top-buttons">
+    <button onclick="location.href='index.html'">Message Anonymously</button>
+    <button onclick="location.href='signin.html'">Log Out</button>
+  </div>
 
-    <h1>YOUR MESSAGES</h1>
+  <h1>YOUR MESSAGES</h1>
 
-    <div id="messagebox" class="messagebox">
-        <% messages.forEach(function(message) { %>
-            <div class="message" data-id="<%= message._id %>" data-seen="<%= message.seen %>">
-                <h2>ANONYMOUS USER</h2>
-                <textarea readonly><%= message.message || message.text %></textarea>
-            </div>
-        <% }); %>
-    </div>
+  <div id="messagebox" class="messagebox">
+    <% messages.forEach(function(message) { %>
+      <div class="message" data-id="<%= message._id %>" data-seen="<%= message.seen %>">
+        <h2>ANONYMOUS USER</h2>
+        <textarea readonly><%= message.message || message.text %></textarea>
+      </div>
+    <% }); %>
+  </div>
 
-    <script>
-        let currentMessageCard = null;
+  <script>
+    let currentMessageCard = null;
 
-        function dismissMessageCard() {
-            if (currentMessageCard) {
-                currentMessageCard.remove();
-                currentMessageCard = null;
-                document.removeEventListener('click', dismissMessageCardGlobal);
-            }
-        }
+    function dismissMessageCard() {
+      if (currentMessageCard) {
+        currentMessageCard.remove();
+        currentMessageCard = null;
+        document.removeEventListener('click', dismissMessageCardGlobal);
+      }
+    }
 
-        function dismissMessageCardGlobal(event) {
-            if (currentMessageCard && !currentMessageCard.contains(event.target)) {
-                dismissMessageCard();
-            }
-        }
+    function dismissMessageCardGlobal(event) {
+      if (currentMessageCard && !currentMessageCard.contains(event.target)) {
+        dismissMessageCard();
+      }
+    }
 
-        document.querySelectorAll('.message').forEach(msgDiv => {
-            msgDiv.addEventListener('click', event => {
-                event.stopPropagation();
+    document.querySelectorAll('.message').forEach(msgDiv => {
+      msgDiv.addEventListener('click', event => {
+        event.stopPropagation();
+        if (currentMessageCard) dismissMessageCard();
 
-                if (currentMessageCard) {
-                    dismissMessageCard();
-                }
+        const msgContent = msgDiv.querySelector('textarea').value;
 
-                const messageContent = msgDiv.querySelector('textarea').value;
+        const card = document.createElement('div');
+        card.classList.add('message-card');
 
-                const card = document.createElement('div');
-                card.classList.add('message-card');
-                card.innerHTML = `
-                    <h2>ANONYMOUS USER</h2>
-                    <textarea readonly>${messageContent}</textarea>
-                `;
+        const heading = document.createElement('h2');
+        heading.textContent = 'ANONYMOUS USER';
 
-                const textarea = card.querySelector('textarea');
-                textarea.style.height = 'auto';
-                textarea.style.height = textarea.scrollHeight + 'px';
+        const textarea = document.createElement('textarea');
+        textarea.readOnly = true;
+        textarea.textContent = msgContent;
 
-                document.body.appendChild(card);
-                currentMessageCard = card;
+        // Apply dynamic height
+        textarea.style.height = 'auto';
+        document.body.appendChild(card); // Temporarily add to DOM to get scrollHeight
+        card.appendChild(heading);
+        card.appendChild(textarea);
+        textarea.style.height = textarea.scrollHeight + 'px';
 
-                card.addEventListener('click', e => {
-                    e.stopPropagation();
-                    dismissMessageCard();
-                });
+        currentMessageCard = card;
 
-                document.addEventListener('click', dismissMessageCardGlobal);
-            });
+        card.addEventListener('click', e => {
+          e.stopPropagation();
+          dismissMessageCard();
         });
-    </script>
+
+        document.addEventListener('click', dismissMessageCardGlobal);
+      });
+    });
+  </script>
 </body>
 
 </html>
