@@ -272,7 +272,7 @@
                 card.classList.add('message-card');
                 card.innerHTML = `
                      <h2>ANONYMOUS USER</h2>
-                     <textarea readonly>${msgDiv.querySelector('textarea').value}</textarea>
+                     <textarea readonly><%= message.message || message.text %></textarea>
                 `;
                 const textarea = card.querySelector('textarea');
                 textarea.style.height = 'auto'; // Reset any previously set height
