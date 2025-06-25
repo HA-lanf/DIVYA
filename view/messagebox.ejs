@@ -35,6 +35,21 @@
             align-items: center; /* Center items horizontally */
             justify-content: flex-start; /* Align content to start, allowing space at bottom if content is short */
         }
+            .message-card textarea {
+                width: 100%;
+                background-color: transparent;
+                border: none;
+                resize: none;
+                color: var(--text-color);
+                font-size: 1rem;
+                line-height: 1.5;
+                outline: none;
+                font-family: 'Inter', sans-serif;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                word-break: break-word;
+            }
+
         /* Style for readonly message textarea */
         .message textarea {
             width: 100%;
@@ -256,9 +271,10 @@
                 const card = document.createElement('div');
                 card.classList.add('message-card');
                 card.innerHTML = `
-                    <h2>ANONYMOUS USER</h2>
-                    <p>${msgDiv.querySelector('textarea').textContent}</p>
+                     <h2>ANONYMOUS USER</h2>
+                     <textarea readonly>${msgDiv.querySelector('textarea').value}</textarea>
                 `;
+
                 document.body.appendChild(card);
                 currentMessageCard = card; // Store reference to the new card
 
