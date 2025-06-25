@@ -35,6 +35,25 @@
             align-items: center; /* Center items horizontally */
             justify-content: flex-start; /* Align content to start, allowing space at bottom if content is short */
         }
+        /* Style for readonly message textarea */
+        .message textarea {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            resize: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.5;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .message textarea:focus {
+            outline: none;
+        }
 
         .top-buttons {
             position: absolute;
@@ -193,7 +212,7 @@
             <!-- Add data-id attribute to store message._id -->
             <div class="message" data-id="<%= message._id %>" data-seen="<%= message.seen %>">
                 <h2>ANONYMOUS USER</h2>
-                <p><%= message.message || message.text %></p>
+                <textarea readonly><%= message.message || message.text %></textarea>
                 <% /* The image tag for unread status is removed as per your request */ %>
             </div>
         <% }); %>
